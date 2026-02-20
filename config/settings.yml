@@ -1,0 +1,9 @@
+discourse_indisposable_email:
+  indisposable_email_enabled:
+    default: false
+  indisposable_email_mailboxvalidator_key:
+    default: ""
+    secret: true
+  indisposable_email_usercheck_key:
+    default: ""
+    secret: true

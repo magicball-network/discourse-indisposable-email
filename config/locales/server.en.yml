@@ -1,0 +1,5 @@
+en:
+  site_settings:
+    indisposable_email_enabled: Enable disposable email validation. At least one provider must be configured.
+    indisposable_email_mailboxvalidator_key: API key for MailboxValidator
+    indisposable_email_usercheck_key: API key for UserCheck
