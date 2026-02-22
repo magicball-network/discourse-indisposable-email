@@ -6,6 +6,10 @@ require "net/http"
 module DiscourseIndisposableEmail
   # API specification: https://docs.quickemailverification.com/email-verification-api/verify-an-email-address
   class QuickemailverificationValidator < EmailAddressValidator
+    def validator_id
+      "quickemailverification"
+    end
+
     def enabled?
       SiteSetting.indisposable_email_qev_key.present? && !backoff?
     end
@@ -36,15 +40,6 @@ module DiscourseIndisposableEmail
       Rails.logger.warn "Communication failure with quickemailverification. #{error.message}",
                         error
       :failure
-    end
-
-    def backoff?
-      @backoff_until && @backoff_until.future?
-    end
-
-    def handle_failure(response)
-      @backoff_until = Time.now + 5.minutes if response.code == "429"
-      Rails.logger.warn "Communication failure with quickemailverification. #{response.code}"
     end
   end
 end

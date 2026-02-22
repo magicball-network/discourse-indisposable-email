@@ -9,7 +9,7 @@ en:
     indisposable_email_allow_cache: Hours to cache the results of an non-disposable email domain. You do not want to set this too long.
     indisposable_email_deny_cache: Hours to cache the the result of a disposable email domain.
     indisposable_email_mailboxvalidator_key: API key for <a href="https://www.mailboxvalidator.com/plans#api" target="_blank">MailboxValidator</a>.
-    indisposable_email_usercheck_key: API key for <a href="https://www.usercheck.com/" target="_blank">UserCheck</a>.
+    indisposable_email_usercheck_key: API key for <a href="https://www.usercheck.com" target="_blank">UserCheck</a>.
     indisposable_email_mailsac_key: API key for <a href="https://mailsac.com" target="_blank">Mailsac</a>.
-    indisposable_email_qev_key: API key for <a href="https://quickemailverification.com/" target="_blank">QuickEmailVerification</a>.
-
+    indisposable_email_qev_key: API key for <a href="https://quickemailverification.com" target="_blank">QuickEmailVerification</a>.
+    indisposable_email_verifymail_key: API key for <a href="https://verifymail.io" target="_blank">Verifymail.io</a>.

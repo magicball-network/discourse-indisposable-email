@@ -9,6 +9,7 @@ The following online services are supported:
 - [UserCheck](https://www.usercheck.com)
 - [Mailsac](https://mailsac.com)
 - [QuickEmailVerification](https://quickemailverification.com)
+- [Verifymail](https://verifymail.io/pricing)
 
 For more information check the [discussion on Discourse Meta](https://meta.discourse.org/t/...).
 

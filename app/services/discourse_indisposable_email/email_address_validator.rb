@@ -7,6 +7,10 @@ module DiscourseIndisposableEmail
       domain_status?(domain)
     end
 
+    def validator_id
+      "abstract-class"
+    end
+
     def enabled?
       false
     end
@@ -53,6 +57,15 @@ module DiscourseIndisposableEmail
       return if SiteSetting.blocked_email_domains.split("|").include?(domain)
       SiteSetting.blocked_email_domains =
         SiteSetting.blocked_email_domains + "|" + domain
+    end
+
+    def backoff?
+      @backoff_until && @backoff_until.future?
+    end
+
+    def handle_failure(response)
+      @backoff_until = Time.now + 5.minutes if response.code == "429"
+      Rails.logger.warn "Communication failure with #{self.validator_id}. #{response.code}"
     end
   end
 end

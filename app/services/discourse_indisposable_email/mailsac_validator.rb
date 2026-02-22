@@ -6,6 +6,10 @@ require "net/http"
 module DiscourseIndisposableEmail
   # API specification: https://mailsac.com/docs/api#tag/emailValidation/operation/ValidateAddress
   class MailsacValidator < EmailAddressValidator
+    def validator_id
+      "mailsac"
+    end
+
     def enabled?
       SiteSetting.indisposable_email_mailsac_key.present? && !backoff?
     end
@@ -33,15 +37,6 @@ module DiscourseIndisposableEmail
       Rails.logger.warn "Communication failure with mailsac. #{error.message}",
                         error
       :failure
-    end
-
-    def backoff?
-      @backoff_until && @backoff_until.future?
-    end
-
-    def handle_failure(response)
-      @backoff_until = Time.now + 5.minutes if response.code == "429"
-      Rails.logger.warn "Communication failure with mailsac. #{response.code}"
     end
   end
 end

@@ -6,6 +6,10 @@ require "net/http"
 module DiscourseIndisposableEmail
   # API specification: https://www.mailboxvalidator.com/api-email-disposable
   class MailboxValidator < EmailAddressValidator
+    def validator_id
+      "mailboxvalidator"
+    end
+
     def enabled?
       SiteSetting.indisposable_email_mailboxvalidator_key.present? && !backoff?
     end
@@ -24,7 +28,7 @@ module DiscourseIndisposableEmail
       json = JSON.parse(response.body || "{}")
 
       unless response.code == "200"
-        handle_failure(json)
+        handle_failure(response, json)
         return :failure
       end
 
@@ -37,13 +41,8 @@ module DiscourseIndisposableEmail
       :failure
     end
 
-    def backoff?
-      @backoff_until && @backoff_until.future?
-    end
-
-    def handle_failure(body)
-      @backoff_until = Time.now + 5.minutes if response.code == "429"
-      Rails.logger.warn "mailboxvalidator API call unsuccessful. #{body}"
+    def handle_failure(response, body)
+      handle_failure(response)
       if body.error && body.error.error_code
         if body.error.error_code == 10_004
           # 10004 	Insufficient credits.

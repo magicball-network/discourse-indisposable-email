@@ -6,7 +6,8 @@ module DiscourseIndisposableEmail
       MailboxValidator.new,
       UsercheckValidator.new,
       MailsacValidator.new,
-      QuickemailverificationValidator.new
+      QuickemailverificationValidator.new,
+      VerifymailValidator.new
     ]
 
     def self.allowed?(email)
