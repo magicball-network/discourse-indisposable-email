@@ -28,6 +28,8 @@ module DiscourseIndisposableEmail
         return :failure
       end
 
+      @backoff_until = Time.now + 1.hour if json["credits_available"] == 0
+
       json["is_disposable"] ? :deny : :allow
     rescue StandardError => error
       Rails.logger.warn "Communication failure with mailboxvalidator. #{error.message}",
