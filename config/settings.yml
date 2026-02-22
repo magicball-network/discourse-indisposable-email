@@ -18,6 +18,9 @@ discourse_indisposable_email:
   indisposable_email_verifymail_key:
     default: ""
     secret: true
+  indisposable_email_zerobounce_key:
+    default: ""
+    secret: true
   indisposable_email_allow_cache:
     default: 24
     min: 0

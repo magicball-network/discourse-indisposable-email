@@ -30,8 +30,6 @@ module DiscourseIndisposableEmail
 
       json = JSON.parse(response.body)
 
-      @backoff_until = Time.now + 1.second
-
       json["isDisposable"] ? :deny : :allow
     rescue StandardError => error
       Rails.logger.warn "Communication failure with mailsac. #{error.message}",
