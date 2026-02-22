@@ -3,7 +3,7 @@
 # name: discourse-indisposable-email
 # about: Prevent users from using disposable email addresses
 # meta_topic_id:
-# version: 0.1
+# version: 0.2
 # authors: elmuerte
 # url: https://github.com/magicball-network/discourse-indisposable-email
 # required_version: 2026.1

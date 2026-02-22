@@ -4,7 +4,9 @@ module DiscourseIndisposableEmail
     @@validators = [
       CacheOnlyValidator.new,
       MailboxValidator.new,
-      UsercheckValidator.new
+      UsercheckValidator.new,
+      MailsacValidator.new,
+      QuickemailverificationValidator.new
     ]
 
     def self.allowed?(email)

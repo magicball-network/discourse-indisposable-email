@@ -4,17 +4,17 @@ require "uri"
 require "net/http"
 
 module DiscourseIndisposableEmail
-  # API specification: https://www.usercheck.com/docs/api/domain-endpoint
-  class UsercheckValidator < EmailAddressValidator
+  # API specification: https://mailsac.com/docs/api#tag/emailValidation/operation/ValidateAddress
+  class MailsacValidator < EmailAddressValidator
     def enabled?
-      SiteSetting.indisposable_email_usercheck_key.present? && !backoff?
+      SiteSetting.indisposable_email_mailsac_key.present? && !backoff?
     end
 
     def retrieve_status(domain)
-      uri = URI("https://api.usercheck.com/domain/#{domain}")
+      uri =
+        URI("https://mailsac.com/api/validations/addresses/example@#{domain}")
       headers = {
-        "Authorization" =>
-          "Bearer #{SiteSetting.indisposable_email_usercheck_key}",
+        "Mailsac-Key" => SiteSetting.indisposable_email_mailsac_key,
         "User-Agent" => HTTP_USER_AGENT
       }
 
@@ -28,9 +28,9 @@ module DiscourseIndisposableEmail
 
       @backoff_until = Time.now + 1.second
 
-      json["disposable"] ? :deny : :allow
+      json["isDisposable"] ? :deny : :allow
     rescue StandardError => error
-      Rails.logger.warn "Communication failure with usercheck. #{error.message}",
+      Rails.logger.warn "Communication failure with mailsac. #{error.message}",
                         error
       :failure
     end
@@ -41,7 +41,7 @@ module DiscourseIndisposableEmail
 
     def handle_failure(response)
       @backoff_until = Time.now + 5.minutes if response.code == "429"
-      Rails.logger.warn "Communication failure with usercheck. #{response.code}"
+      Rails.logger.warn "Communication failure with mailsac. #{response.code}"
     end
   end
 end

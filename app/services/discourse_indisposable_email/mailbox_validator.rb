@@ -40,17 +40,18 @@ module DiscourseIndisposableEmail
     end
 
     def handle_failure(body)
+      @backoff_until = Time.now + 5.minutes if response.code == "429"
       Rails.logger.warn "mailboxvalidator API call unsuccessful. #{body}"
       if body.error && body.error.error_code
         if body.error.error_code == 10_004
           # 10004 	Insufficient credits.
-          @backoff_until = DateTime.now + 1.hour
+          @backoff_until = Time.now + 1.hour
         elsif body.error.error_code >= 10_001 && body.error.error_code <= 10_003
           # 10001 	API key not found.
           # 10002 	API key disabled.
           # 10003 	API key expired.
           Rails.logger.error "mailboxvalidator API key invalid"
-          @backoff_until = DateTime.now + 1.minute
+          @backoff_until = Time.now + 5.minutes
         end
       end
     end

@@ -1,9 +1,23 @@
 discourse_indisposable_email:
   indisposable_email_enabled:
     default: false
+  indisposable_email_update_blocked_domains:
+    default: false
   indisposable_email_mailboxvalidator_key:
     default: ""
     secret: true
   indisposable_email_usercheck_key:
     default: ""
     secret: true
+  indisposable_email_mailsac_key:
+    default: ""
+    secret: true
+  indisposable_email_qev_key:
+    default: ""
+    secret: true
+  indisposable_email_allow_cache:
+    default: 24
+    min: 0
+  indisposable_email_deny_cache:
+    default: 168
+    min: 0

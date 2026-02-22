@@ -6,7 +6,9 @@ In make use of several online services which provide this validation, you need t
 The following online services are supported:
 
 - [MailboxValidator](https://www.mailboxvalidator.com)
-- [UserCheck](https://www.usercheck.com/)
+- [UserCheck](https://www.usercheck.com)
+- [Mailsac](https://mailsac.com)
+- [QuickEmailVerification](https://quickemailverification.com)
 
 For more information check the [discussion on Discourse Meta](https://meta.discourse.org/t/...).
 

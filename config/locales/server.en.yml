@@ -1,5 +1,15 @@
 en:
   site_settings:
     indisposable_email_enabled: Enable disposable email validation. At least one provider must be configured.
-    indisposable_email_mailboxvalidator_key: API key for MailboxValidator
-    indisposable_email_usercheck_key: API key for UserCheck
+    indisposable_email_update_blocked_domains: 
+      Add disposable domains to the blocked email domains setting.
+      <b>Warning!</b>
+      There are a lot of disposable email domains.
+      Enabling this could grow into a really long list.
+    indisposable_email_allow_cache: Hours to cache the results of an non-disposable email domain. You do not want to set this too long.
+    indisposable_email_deny_cache: Hours to cache the the result of a disposable email domain.
+    indisposable_email_mailboxvalidator_key: API key for <a href="https://www.mailboxvalidator.com/plans#api" target="_blank">MailboxValidator</a>.
+    indisposable_email_usercheck_key: API key for <a href="https://www.usercheck.com/" target="_blank">UserCheck</a>.
+    indisposable_email_mailsac_key: API key for <a href="https://mailsac.com" target="_blank">Mailsac</a>.
+    indisposable_email_qev_key: API key for <a href="https://quickemailverification.com/" target="_blank">QuickEmailVerification</a>.
+

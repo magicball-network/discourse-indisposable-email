@@ -29,8 +29,8 @@ module DiscourseIndisposableEmail
 
       value = retrieve_status(domain)
       if value != :failure
-        Discourse.cache.write(key, value)
-        update_site_settings(domain)
+        update_cache(key, value)
+        update_site_settings(domain) if value == :deny
       end
       value
     end
@@ -39,8 +39,20 @@ module DiscourseIndisposableEmail
       "DIE::#{domain.downcase}"
     end
 
+    def update_cache(key, status)
+      if status == :deny
+        ttl = SiteSetting.indisposable_email_deny_cache
+      else
+        ttl = SiteSetting.indisposable_email_allow_cache
+      end
+      Discourse.cache.write(key, status) if ttl > 0
+    end
+
     def update_site_settings(domain)
-      # TODO
+      return unless SiteSetting.indisposable_email_update_blocked_domains
+      return if SiteSetting.blocked_email_domains.split("|").include?(domain)
+      SiteSetting.blocked_email_domains =
+        SiteSetting.blocked_email_domains + "|" + domain
     end
   end
 end
