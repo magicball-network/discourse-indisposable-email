@@ -12,6 +12,8 @@ module DiscourseIndisposableEmail
     ]
 
     def self.allowed?(email)
+      return true unless SiteSetting.indisposable_email_enabled
+
       result = :failure
       available = self.available_validators
 

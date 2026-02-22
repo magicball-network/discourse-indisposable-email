@@ -1,7 +1,7 @@
 # Discourse Indisposable Email
 
 This [Discourse](https://discourse.com/) plugin will verify for disposable email addresses when a user tries to use them.
-In make use of several online services which provide this validation, you need to sign up with at least one of them.
+It makes use of several online services which provide this validation, you need to sign up with at least one of them.
 
 The following online services are supported:
 
@@ -12,7 +12,7 @@ The following online services are supported:
 - [Verifymail](https://verifymail.io)
 - [Zerobounce](https://www.zerobounce.net)
 
-For more information check the [discussion on Discourse Meta](https://meta.discourse.org/t/...).
+For more information check the [discussion on Discourse Meta](https://meta.discourse.org/t/396730).
 
 ## Plugin Compatibility Status
 

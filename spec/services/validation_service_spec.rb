@@ -21,6 +21,8 @@ RSpec.describe DiscourseIndisposableEmail::ValidationService do
     )
   end
 
+  before(:example) { SiteSetting.indisposable_email_enabled = true }
+
   it "will validate an email address" do
     described_class.validators = [disabled_validator, accept_test_tld]
 
