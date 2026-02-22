@@ -34,14 +34,17 @@ module DiscourseIndisposableEmail
       json = JSON.parse(response.body)
       if json["error"]
         @backoff_until = Time.now + 5.minutes
-        Rails.logger.warn "Communication failure with zerobounce. #{json["error"]}"
+        Rails.logger.warn(
+          "Communication failure with zerobounce. #{json["error"]}"
+        )
         return :failure
       end
 
       json["sub_status"] == "disposable" ? :deny : :allow
     rescue StandardError => error
-      Rails.logger.warn "Communication failure with zerobounce. #{error.message}",
-                        error
+      Rails.logger.warn(
+        "Communication failure with zerobounce. #{error.message}"
+      )
       :failure
     end
   end

@@ -43,4 +43,21 @@ RSpec.describe DiscourseIndisposableEmail::EmailAddressValidator do
       :allow
     )
   end
+
+  it "updates the settings for a block domain" do
+    SiteSetting.indisposable_email_update_blocked_domains = true
+
+    cls =
+      Class.new(described_class) do
+        def retrieve_status(domain)
+          :deny
+        end
+      end
+    validator = cls.new
+
+    result = validator.allowed_address?("foo@deny.test")
+    expect(result).to eq(:deny)
+
+    expect(SiteSetting.blocked_email_domains.split("|")).to include("deny.test")
+  end
 end

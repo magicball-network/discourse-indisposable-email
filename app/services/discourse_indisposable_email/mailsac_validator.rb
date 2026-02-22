@@ -32,8 +32,7 @@ module DiscourseIndisposableEmail
 
       json["isDisposable"] ? :deny : :allow
     rescue StandardError => error
-      Rails.logger.warn "Communication failure with mailsac. #{error.message}",
-                        error
+      Rails.logger.warn("Communication failure with mailsac. #{error.message}")
       :failure
     end
   end

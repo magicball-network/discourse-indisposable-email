@@ -25,7 +25,10 @@ module DiscourseIndisposableEmail
       headers = { "User-Agent" => HTTP_USER_AGENT }
 
       response = Net::HTTP.get_response(uri, headers)
-      json = JSON.parse(response.body || "{}")
+      json =
+        JSON.parse(
+          (response.body && response.body.present?) ? response.body : "{}"
+        )
 
       unless response.code == "200"
         handle_failure(response, json)
@@ -36,22 +39,24 @@ module DiscourseIndisposableEmail
 
       json["is_disposable"] ? :deny : :allow
     rescue StandardError => error
-      Rails.logger.warn "Communication failure with mailboxvalidator. #{error.message}",
-                        error
+      Rails.logger.warn(
+        "Communication failure with mailboxvalidator. #{error.message}"
+      )
       :failure
     end
 
     def handle_failure(response, body)
-      handle_failure(response)
-      if body.error && body.error.error_code
-        if body.error.error_code == 10_004
+      super(response)
+      if body["error"] && body["error"]["error_code"]
+        error_code = body["error"]["error_code"]
+        if error_code == 10_004
           # 10004 	Insufficient credits.
           @backoff_until = Time.now + 1.hour
-        elsif body.error.error_code >= 10_001 && body.error.error_code <= 10_003
+        elsif error_code >= 10_001 && error_code <= 10_003
           # 10001 	API key not found.
           # 10002 	API key disabled.
           # 10003 	API key expired.
-          Rails.logger.error "mailboxvalidator API key invalid"
+          Rails.logger.error("mailboxvalidator API key invalid")
           @backoff_until = Time.now + 5.minutes
         end
       end

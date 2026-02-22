@@ -34,8 +34,9 @@ module DiscourseIndisposableEmail
 
       json["disposable"] ? :deny : :allow
     rescue StandardError => error
-      Rails.logger.warn "Communication failure with usercheck. #{error.message}",
-                        error
+      Rails.logger.warn(
+        "Communication failure with usercheck. #{error.message}"
+      )
       :failure
     end
   end

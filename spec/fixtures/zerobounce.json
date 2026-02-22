@@ -1,0 +1,21 @@
+{
+  "address": "example@dropmeon.com",
+  "status": "do_not_mail",
+  "sub_status": "disposable",
+  "free_email": true,
+  "did_you_mean": null,
+  "account": "example",
+  "domain": "dropmeon.com",
+  "domain_age_days": "89",
+  "smtp_provider": "",
+  "mx_found": "true",
+  "mx_record": "mail.dropmeon.com",
+  "firstname": null,
+  "lastname": null,
+  "gender": null,
+  "country": null,
+  "region": null,
+  "city": null,
+  "zipcode": null,
+  "processed_at": "2026-02-22 10:24:11.696"
+}

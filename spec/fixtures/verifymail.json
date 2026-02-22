@@ -1,0 +1,32 @@
+{
+    "block": true,
+    "catch_all": true,
+    "deliverable_email": true,
+    "disposable": true,
+    "domain": "dropmeon.com",
+    "email_address": "example@dropmeon.com",
+    "email_provider": "disposablemail.com",
+    "mx": true,
+    "mx_fallback": false,
+    "mx_host": [
+        "mail.dropmeon.com"
+    ],
+    "mx_ip": [
+        "144.217.32.37"
+    ],
+    "mx_priority": {
+        "mail.dropmeon.com": 10
+    },
+    "mx_priority_ip": {
+        "mail.dropmeon.com": {
+            "144.217.32.37": 10
+        }
+    },
+    "privacy": false,
+    "related_domains": [
+        "disposablemail.com",
+        "dropmeon.com",
+        "dsitip.com",
+        "mail.dsitip.com"
+    ]
+}

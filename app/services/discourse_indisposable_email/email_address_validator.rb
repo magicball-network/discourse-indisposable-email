@@ -65,7 +65,9 @@ module DiscourseIndisposableEmail
 
     def handle_failure(response)
       @backoff_until = Time.now + 5.minutes if response.code == "429"
-      Rails.logger.warn "Communication failure with #{self.validator_id}. #{response.code}"
+      Rails.logger.warn(
+        "Communication failure with #{self.validator_id}. Response code: #{response.code}"
+      )
     end
   end
 end

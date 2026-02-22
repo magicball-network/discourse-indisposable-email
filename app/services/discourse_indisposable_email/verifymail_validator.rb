@@ -30,8 +30,9 @@ module DiscourseIndisposableEmail
 
       json["disposable"] ? :deny : :allow
     rescue StandardError => error
-      Rails.logger.warn "Communication failure with verifymail. #{error.message}",
-                        error
+      Rails.logger.warn(
+        "Communication failure with verifymail. #{error.message}"
+      )
       :failure
     end
   end

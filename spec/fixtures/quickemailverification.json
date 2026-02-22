@@ -1,0 +1,17 @@
+{
+  "result": "valid",
+  "reason": "accepted_email",
+  "disposable": "true",
+  "accept_all": "true",
+  "role": "false",
+  "free": "false",
+  "email": "example@dropmeon.com",
+  "user": "example",
+  "domain": "dropmeon.com",
+  "mx_record": "mail.dropmeon.com",
+  "mx_domain": "dropmeon.com",
+  "safe_to_send": "false",
+  "did_you_mean": "",
+  "success": "true",
+  "message": ""
+}

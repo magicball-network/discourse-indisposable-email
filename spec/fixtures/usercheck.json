@@ -1,0 +1,18 @@
+{
+  "status": 200,
+  "domain": "dropmeon.com",
+  "domain_age_in_days": 88,
+  "mx": true,
+  "mx_records": [
+    {
+      "hostname": "mail.dropmeon.com",
+      "priority": 10
+    }
+  ],
+  "mx_providers": [],
+  "disposable": true,
+  "public_domain": false,
+  "relay_domain": false,
+  "spam": true,
+  "did_you_mean": null
+}

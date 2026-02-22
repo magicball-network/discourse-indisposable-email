@@ -1,0 +1,27 @@
+{
+  "email": "example@mailinator.com",
+  "domain": "mailinator.com",
+  "isValidFormat": true,
+  "local": "example",
+  "isDisposable": true,
+  "disposableDomains": [
+    "junk.vanillasystem.com",
+    "drop.ekholm.org",
+    "aegia.net",
+    "businesssuccessislifesuccess.com",
+    "joeltest.co.uk",
+    "junk.noplay.org"
+  ],
+  "mx": [
+    {
+      "exchange": "mail.mailinator.com",
+      "priority": 1
+    },
+    {
+      "exchange": "mail2.mailinator.com",
+      "priority": 1
+    }
+  ],
+  "isMailsacDeliverable": false,
+  "lookupInfo": ""
+}
