@@ -29,8 +29,6 @@ module DiscourseIndisposableEmail
         return :failure
       end
 
-      puts response.body
-
       json = JSON.parse(response.body)
       if json["error"]
         @backoff_until = Time.now + 5.minutes
